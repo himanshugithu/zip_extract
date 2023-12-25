@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 import zip_function as zp
+
 sg.theme('black')
 lable1 = sg.Text("select archieve:")
 input1 = sg.Input()
@@ -18,7 +19,8 @@ window = sg.Window("Archive Extractor",
                              [extract_button,output_lable]])
 while True:
     event,values = window.read()
-    print(event,values)
     zp.extract_archive(values["archive"],values["folder"])
     window['output'].update(value="extraction completed ")
+    if event == sg.WINDOW_CLOSED:
+        break
 window.close()
